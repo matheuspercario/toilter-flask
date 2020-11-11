@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ super() }} - Index
+{% endblock %}
+
+{% block content %}
+<main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron my-5">
+        <div class="container">
+            <h1 class="display-3">Bem-vindo ao Toilter!</h1>
+            <p class="text-justify">O Toilter é uma aplicação web criada durante o curso de Flask disponibilizado gratuitamente no YouTube por Júlia Rizza. Nessa aplicação, o objetivo é criar um website parecido com o Twitter utilizando o micro framework Flask (Python) para desenvolvimento web.
+            </p>
+            <p><a class="btn btn-primary btn-lg" href="https://www.youtube.com/watch?v=Q_SpLfhFiK8&list=PL3BqW_m3m6a05ALSBW02qDXmfDKIip2KX&index=9" role="button">Acesso youtube &raquo;</a></p>
+        </div>
+    </div> <!-- /jumbotron -->
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris
+                    condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                    euismod.
+                    Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
+                    mauris
+                    condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
+                    euismod.
+                    Donec sed odio dui. </p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                    porta
+                    felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+                    fermentum
+                    massa justo sit amet risus.</p>
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>
+        </div>
+
+        <hr>
+
+    </div> <!-- /container -->
+
+</main>
+{% endblock %}
