@@ -1,8 +1,10 @@
 from flask import render_template, redirect, url_for
-from app import app
+from sqlalchemy.orm import query
+from app import app, db
 
 
 from app.models.forms import LoginForm
+from app.models.tables import User
 
 
 # Página Index
@@ -23,6 +25,26 @@ def login():
         print(form.errors)
     return render_template('login.html', form=form)
 
+
+@app.route('/insert/', defaults={'info' : None})
+@app.route('/insert/<info>/')
+def insert(info):
+    user = User('teste', '123', 'Testers Test', 'test@example.com')
+    db.session.add(user)
+    db.session.commit()
+    return 'OK'
+
+
+@app.route('/select/', defaults={'username' : None})
+@app.route('/select/<username>/')
+def select(username):
+    if username == 'all':
+        users = User.query.all()
+    elif username:
+        users = User.query.filter_by(username=username).all()
+    else:
+        users = User.query.order_by(User.username).all()
+    return render_template('show_users.html', users=users)
 
 # ------------------------------------------------------------
 # TESTES -----------------------------------------------------
