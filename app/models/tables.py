@@ -12,6 +12,7 @@ class User(db.Model):
     name = db.Column(db.String)
     email = db.Column(db.String, unique=True)
 
+    
     # Construtor - Define como a a instância será inicializada
     # Ex.: User('mperc', '132', 'Matheus Bruder', 'mpb@gmail.com')
     def __init__(self, username, password, name, email):
@@ -19,6 +20,25 @@ class User(db.Model):
         self.password = password
         self.name = name
         self.email = email
+
+    # Propriedades de LoginManager -> flask_login
+    @property
+    def is_authenticated(self):
+        return True
+    
+
+    @property
+    def is_active(self):
+        return True
+
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    
+    def get_id(self):
+        return str(self.id)
 
 
     def __repr__(self):

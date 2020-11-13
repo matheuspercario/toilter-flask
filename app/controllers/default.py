@@ -1,35 +1,50 @@
 from flask import render_template, redirect, url_for
-from sqlalchemy.orm import query
-from app import app, db
+from flask.helpers import flash
+from flask_login import login_user, logout_user
+from app import app, db, login_manager
 
 
 from app.models.forms import LoginForm
 from app.models.tables import User
+
+# Carrega o usuário logado e retorna dados dele!
+@login_manager.user_loader
+def load_user(id):
+    return User.query.filter_by(id=id).first()
 
 
 # Página Index
 @app.route('/index/')
 @app.route('/',)
 def index():
-    return render_template('index.html',)
+    return render_template('index.html')
 
 
 @app.route('/login/', methods=('GET', 'POST'))
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        print(form.username.data)
-        print(form.password.data)
-        return redirect(url_for('login')) # clear form
-    else:
-        print(form.errors)
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and user.password == form.password.data:
+            login_user(user)
+            flash('Logged in')
+            return redirect(url_for('index'))
+        else:
+            flash('Invalid login')
     return render_template('login.html', form=form)
+
+
+@app.route('/logout/')
+def logout():
+    logout_user()
+    flash('Logged out')
+    return redirect(url_for('index'))
 
 
 @app.route('/insert/', defaults={'info' : None})
 @app.route('/insert/<info>/')
 def insert(info):
-    user = User('teste', '123', 'Testers Test', 'test@example.com')
+    user = User('suetam', '123', 'SUETAM', 's@example.com')
     db.session.add(user)
     db.session.commit()
     return 'OK'
