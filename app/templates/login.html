@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ super() }} - Login
+{% endblock %}
+
+{% block content %}
+    <div class="container my-5 py-5">   
+        <h2 class="display-4 py-3 mb-4">Login</h2>
+        <form action="" method="POST">
+            {{ form.csrf_token }}
+            <div class="form-group">
+                <label>Username</label>
+                {{ form.username(class="form-control", placeholder="Type username...") }}
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                {{ form.password(class="form-control", placeholder="Type password...") }}
+            </div>
+            <div class="form-group form-check p-0">
+                <label>  
+                    {{ form.remember_me }} Remember me
+                </label>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form>
+    </div>
+
+{% endblock %}
